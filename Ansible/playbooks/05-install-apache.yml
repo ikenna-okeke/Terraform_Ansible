@@ -1,0 +1,12 @@
+#THIS IS CALLED CONFIGURATION MANAGEMENT
+---
+- hosts: dev
+  become: true # become root user or sudo
+  tasks:
+    - yum:
+        name:
+          - httpd
+        state: present #install httpd on all ec2 instances
+
+    - service: name=httpd state=started enabled=yes #after installing we want to run it as a service with name of httpd and a state of strted and enabled
+    - raw: "echo  welcome to gbambors cloud | sudo tee /var/www/html/index.html"

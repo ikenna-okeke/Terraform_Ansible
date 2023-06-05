@@ -1,0 +1,14 @@
+#execute using ansible-playbook -i ansible_hosts playbooks/01-ping.yml
+#playbooks/01-ping.yml is the relative part to the .yaml file cos we dont want to configure ansible in all the folders but only in the root ansible folder
+---
+- hosts: dev #means all the hosts each list of host and their commands is a play.
+  vars_files:
+    - variables.yml
+  # vars:
+  #   variable1: "playbookValue"
+  tasks:
+    - name: Ping all servers
+      debug: msg=" value is {{variable1}}"
+# - hosts: dev
+#   tasks:
+#     - debug: msg="Hello dev"
